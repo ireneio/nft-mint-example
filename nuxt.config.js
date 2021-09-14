@@ -1,11 +1,13 @@
 export default {
+  ssr: false,
+  target: 'static',
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: 'IreneHub',
+    title: 'NFT |',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Irene\'s Portfolio Showcase & Demonstration' }
+      { hid: 'description', name: 'description', content: 'NFT' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -19,8 +21,7 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
-    '~/plugins/axios',
-    '~/plugins/fontawesome'
+    '~/plugins/axios'
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -30,6 +31,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
+    ['@nuxtjs/vuetify', { /* module options */ }]
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -48,8 +50,10 @@ export default {
   // },
   env: {
     API_URL: process.env.NUXT_ENV_API_URL || 'http://localhost:8081',
-    BLOB_URL: process.env.NUXT_ENV_BLOB_URL || null,
-    TIMEOUT_LIMIT: process.env.NUXT_ENV_TIMEOUT_LIMIT,
+    PINATA_KEY: process.env.NUXT_ENV_PINATA_KEY || '',
+    PINATA_SECRET: process.env.NUXT_ENV_PINATA_SECRET || '',
+    CT_ADDRESS: process.env.NUXT_ENV_CT_ADDRESS || '',
+    ALCHEMY_KEY: process.env.NUXT_ENV_ALCHEMY_KEY || ''
   },
   // loading: '~/components/BaseLoading.vue',
   loading: {
@@ -57,5 +61,8 @@ export default {
   },
   server: {
     port: process.env.PORT || 3000
+  },
+  vuetify: {
+    treeShake: true
   }
 }
